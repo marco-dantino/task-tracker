@@ -1,4 +1,5 @@
 import TasksCard from "@components/TasksCard";
+
 /*
   Almacena tus tareas en una matriz de objetos, en la que cada objeto representa 
   una tarea con propiedades como la descripción 
@@ -13,7 +14,7 @@ function App() {
   return (
     <div className="flex flex-col h-screen">
       <header className="w-full bg-slate-200 p-4 text-center shadow">
-        Hola
+        Feling
       </header>
 
       <main className="flex-1 flex items-center justify-center">
