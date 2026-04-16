@@ -1,4 +1,4 @@
-import TasksCard from "@components/TasksCard";
+import TasksCard from "@components/TaskCard";
 
 /*
   Almacena tus tareas en una matriz de objetos, en la que cada objeto representa 
