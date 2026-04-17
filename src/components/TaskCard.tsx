@@ -114,7 +114,6 @@ export default function TasksCard(){
           <AddTask onAddToDo={handleAddToDo} />
           <div className="flex text-2xl overflow-y-auto w-[88%] gap-2 mb-4 rounded-[10px] justify-start">
             <TaskList todos={todos} onDeleteToDo={handleDeleteToDo} onEditToDo={handleEditToDo} />
-            {console.table(todos)}
           </div>
         </div>
       </div>
