@@ -1,7 +1,6 @@
 import { useState } from "react";
 import LiquidGlass from 'liquid-glass-react'
 
-let nextId = 3;
 const initialTasks = [
   {
     id: 0,
@@ -30,7 +29,7 @@ interface AddTaskProps {
   todos?: Task[];
   onAddToDo?: (arg0: string) => void;
   onDeleteToDo?: (arg0: number) => void;
-  onEditToDo: (arg0: number, arg1: Task ) => void;
+  onEditToDo?: (arg0: number, arg1: Task ) => void;
 }
 
 function Task({ todo, onDelete, onEdit } : { todo: Task, onDelete: AddTaskProps["onDeleteToDo"], onEdit: AddTaskProps["onEditToDo"] }){
@@ -40,7 +39,7 @@ function Task({ todo, onDelete, onEdit } : { todo: Task, onDelete: AddTaskProps[
       <label className="flex justify-between">
         <div className="w-full">
           {/* <input type="checkbox" checked={todo.completed}/> */}
-          <input disabled={isEditing} onChange={e => onEdit(todo.id, {...todo, title: e.target.value})} className="pl-2" value={todo.title}/>
+          <input disabled={isEditing} onChange={e => onEdit?.(todo.id, {...todo, title: e.target.value})} className="pl-2" value={todo.title}/>
           <button onClick={() => setIsEditing(!isEditing)} className="text-slate-800 font-medium">
             {
               isEditing ?  "Editar" : "Guardar"
@@ -92,7 +91,7 @@ export default function TasksCard(){
       setTodos([
         ...todos,
         {
-          id: nextId++,
+          id: todos.length,
           title: title,
           completed: false
         }
@@ -100,7 +99,8 @@ export default function TasksCard(){
     }
 
     function handleDeleteToDo(todoId: number) {
-      setTodos(todos.filter( t => t.id !== todoId))
+      let newTodos = todos.filter( t => t.id !== todoId);
+      setTodos(newTodos.map( (t, i) => ({...t, id: i})));
     }
 
     function handleEditToDo(todoId: number, newTodo: Task) {
